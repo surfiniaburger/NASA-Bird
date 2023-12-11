@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "751d2fd2da6f31319b0f8af13f4555a9c9d373475f533caea2f64341c408beec"
+            "sha256": "d1b02789ab823fe53127ce739d282fc10ed23c89b7055ea5c484af009feb8dec"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -250,6 +250,22 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.1.3"
         },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba",
+                "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"
+            ],
+            "index": "pypi",
+            "version": "==1.0.0"
+        },
+        "python-http-client": {
+            "hashes": [
+                "sha256:ad371d2bbedc6ea15c26179c6222a78bc9308d272435ddf1d5c84f068f249a36",
+                "sha256:bf841ee45262747e00dec7ee9971dfb8c7d83083f5713596488d67739170cea0"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==3.3.7"
+        },
         "redis": {
             "hashes": [
                 "sha256:0dab495cd5753069d3bc650a0dde8a8f9edde16fc5691b689a566eda58100d0f",
@@ -265,6 +281,20 @@
             ],
             "index": "pypi",
             "version": "==2.31.0"
+        },
+        "sendgrid": {
+            "hashes": [
+                "sha256:43ecf5bb742ea5850c7cfe68f5e7d9948772352306d4e83e119899959538b884",
+                "sha256:71424b2a97f5a034121ea3b2666c653ba0ed315982f0d57b7851c0c9503dc5ab"
+            ],
+            "index": "pypi",
+            "version": "==6.11.0"
+        },
+        "starkbank-ecdsa": {
+            "hashes": [
+                "sha256:9399c3371b899d4a235b68a1ed7919d202fbf024bd2c863ae8ebdad343c2a63a"
+            ],
+            "version": "==2.2.0"
         },
         "urllib3": {
             "hashes": [
