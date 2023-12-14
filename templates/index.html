@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Mars Learning Platform</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .header {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .main-content {
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Explore Mars Learning Platform</h1>
+        <p>Unlock the Secrets of the Red Planet with Our Educational AI and Mars Rover Insights</p>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="content-card">
+                        <h2>Educational AI</h2>
+                        <p>{{ ai_data }}</p>
+                        <!-- Button to trigger email sending -->
+                        <form action="{{ url_for('send_email') }}" method="post">
+                            <button type="submit" class="btn btn-primary">Send Email</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-card">
+                        <h2>Mars Rover Mission</h2>
+                        <img src="{{ space_photo_url }}" alt="Mars Rover Photo" class="img-fluid">
+                        <p>{{ fun_fact }}</p>
+                        <a href="#real-time-updates" class="btn btn-primary">Get Real-Time Updates</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2023 Explore Mars Learning Platform. All rights reserved.</p>
+    </div>
+
+    <!-- Optional: Include Bootstrap JS for enhanced functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

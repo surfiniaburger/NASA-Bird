@@ -1,5 +1,5 @@
 # Flask web application integrating educational AI, space photos, and fun facts with Redis
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, flash, redirect, url_for
 from flask import stream_with_context
 from flask_redis import FlaskRedis
 from sendgrid import SendGridAPIClient
@@ -13,7 +13,7 @@ import requests
 app = Flask(__name__)
 redis_client = FlaskRedis(app)
 load_dotenv()
-
+app.config['SECRET_KEY'] = 'secret_key'
 
 # Initialize Redis connection
 redis_host = os.environ.get('REDIS_HOST', 'localhost')
@@ -24,7 +24,7 @@ def notify_clients(data):
     redis_pubsub.publish('real-time-updates', data)
 
 @app.route('/')
-def educate_and_send_email():
+def landing_page():
     # Check if educational AI data is in cache
     ai_data = redis_client.get('educational_ai_data')
 
@@ -35,8 +35,16 @@ def educate_and_send_email():
         # Cache the educational AI data for future use
         redis_client.set('educational_ai_data', ai_data)
 
-    # Fetch a random space-related photo URL 
+    # Fetch a random space-related photo URL
+    space_photo_url, fun_fact = get_random_space_photo()
 
+    # Render the template with the variables
+    return render_template('index.html', ai_data=ai_data, space_photo_url=space_photo_url, fun_fact=fun_fact)
+
+@app.route('/send-email', methods=['POST'])
+def send_email():
+    # Fetch the educational AI data, space photo, and fun fact
+    ai_data = fetch_educational_ai_data()
     space_photo_url, fun_fact = get_random_space_photo()
 
     # Send email with educational AI data, the space-related photo, and the fun fact
@@ -50,16 +58,33 @@ def educate_and_send_email():
 
     sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
     response = sg.send(message)
-    return render_template('success.html', response=response)
+
+    # Flash a success message
+    if response.status_code == 202:
+        success_message = 'Email sent successfully!'
+        flash(success_message, 'success')
+
+    return redirect(url_for('landing_page'))
 
 def notify_clients(data):
     redis_pubsub.publish('real-time-updates', data)
 
 
 def fetch_educational_ai_data():
-    # In a real scenario, this function would fetch educational AI data from a source
-    # For simplicity, let's use a static string
-    return f"Learn about space and astronomy with this educational AI content!"
+    topics = [
+        "Explore the fascinating journey of the Mars rovers, including Spirit, Opportunity, Curiosity, and Perseverance.",
+        "Learn about the unique challenges of landing and operating rovers on the Martian surface.",
+        "Discover how Mars rovers analyze soil and rock samples to understand the geology and history of Mars.",
+        "Understand the role of Mars rovers in the search for signs of past or present life on the Red Planet.",
+        "Explore the advanced scientific instruments onboard Mars rovers, such as spectrometers and cameras.",
+        "Learn about the achievements and key discoveries made by Mars rovers, including evidence of past water activity.",
+        "Understand the significance of Perseverance's mission in the context of paving the way for future human exploration.",
+        "Explore the technological innovations that enable remote operation and communication with Mars rovers.",
+        "Discover the collaborative international efforts involved in planning and executing Mars rover missions.",
+        "Learn about the daily challenges faced by Mars rovers, from navigating the Martian terrain to enduring harsh conditions.",
+    ]
+
+    return random.choice(topics)
 
 api_key=os.environ.get("NASA_API_KEY")
 

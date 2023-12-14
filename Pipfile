@@ -4,11 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-requests = "*"
-flask = "*"
+requests = "==2.23.0"
 flask-redis = "*"
-sendgrid = "*"
+sendgrid = "==6.9.6"
 python-dotenv = "*"
+scikit-learn = "*"
+nltk = "*"
+pytorch-pretrained-bert = "*"
+torchtext = "*"
+transformers = "*"
+gensim = "*"
+flask = "*"
 
 [dev-packages]
 
