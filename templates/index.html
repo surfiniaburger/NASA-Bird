@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore Mars Learning Platform</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #add8e6; /* Light blue background */
             font-family: 'Arial', sans-serif;
+            transition: background-color 0.5s ease-in-out;
+            color: #fff; /* White text color */
         }
 
         .header {
-            background-color: #343a40;
+            background-color: #007bff; /* Bootstrap primary blue */
             color: #ffffff;
             padding: 80px 0;
             text-align: center;
+            transition: padding 0.5s ease-in-out, color 0.5s ease-in-out, background-color 0.5s ease-in-out;
         }
 
         .main-content {
@@ -24,49 +30,391 @@
         }
 
         .content-card {
-            background-color: #ffffff;
+            background-color: #0056b3; /* Bootstrap darker blue */
             border-radius: 15px;
             padding: 30px;
             margin: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Darker shadow */
+            transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
         }
 
         .footer {
-            background-color: #343a40;
+            background-color: #007bff; /* Bootstrap primary blue for footer */
             color: #ffffff;
             padding: 20px 0;
             text-align: center;
+            transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
         }
+
+        .content-card h2,
+        .content-card p {
+            text-align: left;
+        }
+
+        .content-card h3 {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .input-group {
+            display: flex;
+        }
+
+        .input-group .form-control {
+            flex: 1;
+        }
+
+        .content-card img {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        #scroll-to-top-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            font-size: 16px;
+            border: none;
+            outline: none;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #scroll-to-top-btn:hover {
+            background-color: #0056b3;
+        }
+
+        body.dark-mode {
+            /* Styles for dark mode */
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        body.dark-mode #scroll-to-top-btn {
+            color: #000; /* Set text color for dark mode */
+        }
+
+        ul.nav.nav-tabs.justify-content-center {
+            /* Styles for the navigation text */
+            background-color: #0056b3; /* Darker blue background for the navigation */
+        }
+
+        ul.nav.nav-tabs.justify-content-center li.nav-item a.nav-link {
+            color: #ffffff; /* White text color for the navigation links */
+        }
+
+        ul.nav.nav-tabs.justify-content-center li.nav-item a.nav-link:hover {
+            color: #f8f9fa; /* Lighter text color on hover */
+        }
+
+        .button {
+            position: relative;
+            padding: 8px 16px;
+            background: #009579;
+            border: none;
+            outline: none;
+            border-radius: 2px;
+            cursor: pointer;
+          }
+
+          .button:active {
+            background: #007a63;
+          }
+
+          .button__text {
+            font:  20px "Quicksand", san-serif;
+            color: #ffffff;
+            transition: all 0.2s;
+          }
+
+          .button--loading .button__text {
+            visibility: hidden;
+            opacity: 0;
+          }
+
+          .button--loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+          }
+
+          @keyframes button-loading-spinner {
+            from {
+              transform: rotate(0turn);
+            }
+
+            to {
+              transform: rotate(1turn);
+            }
+          }
+          /* Toggle switch styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Sun, Moon, and Auto SVG icons styles */
+#sun,
+#moon,
+#auto {
+    display: none;
+}
+
+/* Apply styles based on the theme */
+body.theme-light #sun,
+body.theme-dark #moon,
+body.theme-auto #auto {
+    display: inline-block;
+}
+
+body.theme-light {
+    background-color: #add8e6;
+    color: #fff;
+}
+
+body.theme-dark {
+    background-color: #343a40;
+    color: #fff;
+}
+
+body.theme-auto {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.content-card {
+    transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out, color 0.5s ease-in-out;
+}
+
+
+.logo-container {
+  max-width: 200px; /* Adjust the maximum width of the logo container as needed */
+  margin: 0 auto; /* Center the logo horizontally */
+  padding: 20px; /* Add padding around the logo (adjust as needed) */
+}
+
+.logo-container img {
+  max-width: 100%; /* Make sure the logo doesn't exceed the container width */
+  height: auto; /* Maintain the aspect ratio of the logo */
+  display: block; /* Remove extra space below the inline image */
+  margin: 0 auto; /* Center the image within its container */
+}
+
+
     </style>
+
 </head>
 <body>
+
+
     <div class="header">
-        <h1>Explore Mars Learning Platform</h1>
-        <p>Unlock the Secrets of the Red Planet with Our Educational AI and Mars Rover Insights</p>
+        <!-- Toggle switch -->
+       <div class="toggle-switch" style="float: right; margin-right: 20px;" >
+          <label class="switch">
+              <input type="checkbox" id="themeToggle">
+              <span class="slider round"></span>
+          </label>
+       </div>
+       <!-- SVG icons -->
+       <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16">
+          <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+
+        <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
+          <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278"/>
+          <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+        </svg>
+
+        <svg id="auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50" fill="#f8f9fa">
+        <!-- Your auto icon content -->
+        </svg>
+          <h1>Explore Mars Learning Platform</h1>
+          <p>Unlock the Secrets of the Red Planet with Our Educational AI and Mars Rover Insights</p>
     </div>
+
+    <!-- Navigation Tabs -->
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" href="#home">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#autoscraper">AutoScraper</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#summarize">Summarizer</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#real-time-updates">Mars Rover Mission</a>
+        </li>
+    </ul>
 
     <div class="main-content">
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="content-card">
-                        <h2>Educational AI</h2>
-                        <p>{{ ai_data }}</p>
+            <!-- Mars Rover Mission Section -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div id = "Home"  class="content-card">
+                        <h2>Mars Rover Mission</h2>
+                        <img src="{{ space_photo_url }}"  class="img-fluid">
+                        <p>{{ fun_fact }}</p>
                         <!-- Button to trigger email sending -->
                         <form action="{{ url_for('send_email') }}" method="post">
-                            <button type="submit" class="btn btn-primary">Send Email</button>
+                            <div class="input-group">
+                            <button type="submit" class="btn btn-primary" onclick="this.classList.toggle('button--loading')">
+                                <span class="button__text">Send Email</span>
+                            </button>
+                        </div>
                         </form>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
-                    <div class="content-card">
-                        <h2>Mars Rover Mission</h2>
-                        <img src="{{ space_photo_url }}" alt="Mars Rover Photo" class="img-fluid">
-                        <p>{{ fun_fact }}</p>
-                        <a href="#real-time-updates" class="btn btn-primary">Get Real-Time Updates</a>
+                    <div id = "autoscraper" class="content-card">
+                        <h2>AutoScraper</h2>
+                        <p>A powerful tool for automating the extraction of structured data from websites, making it a valuable asset for web scraping projects.</p>
+
+                        <!-- Form to enter the URL -->
+        <form action="{{ url_for('landing_page') }}" method="get">
+            <div class="form-group">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="urlInput" name="url" placeholder="Enter URL for AutoScraper">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary" onclick="this.classList.toggle('button--loading');" >
+                            <span class="button__text">Explore</span>
+                        </button>
+
+
                     </div>
                 </div>
             </div>
+        </form>
+
+
+                    </div>
+                </div>
+
+                <!-- New section for AutoScraper Results -->
+                <div class="col-md-6">
+                    <div class="content-card">
+                        <h2>AutoScraper Results</h2>
+                        {% if extracted_info %}
+                            <p>{{ extracted_info }}</p>
+                        {% else %}
+                            <p>No AutoScraper results available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id = "summarize"  class="content-card">
+                                <h3>Original Content:</h3>
+                                <form action="{{ url_for('summarize_content') }}" method="post" disabled>
+                                    <div class="form-group">
+                                        <textarea name="content" id="content" rows="5" placeholder="Enter text to summarize"></textarea>
+                                    </div>
+                                    <div class="input-group">
+                                    <button type="submit" id="summarize-btn" class="btn btn-primary" onclick="this.classList.toggle('button--loading')">
+                                        <span class="button__text">Summarize</span>
+                                    </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="content-card">
+                                <h3>Summarized Content:</h3>
+                                {% if summarized_content %}
+                                <p>{{ summarized_content }}</p>
+                                {% else %}
+                                <p>No Summarized results available.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                       
+                        {% if grade and feedback %}
+                        <p>Your Grade: {{ grade }}</p>
+                        <p>Feedback: {{ feedback }}</p>
+                        {% endif %}
+
+                         {% if teacher_training_content %}
+                         <h2>Teacher Training Content</h2>
+                         <p>{{ teacher_training_content }}</p>
+                         {% endif %}
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -74,9 +422,116 @@
         <p>&copy; 2023 Explore Mars Learning Platform. All rights reserved.</p>
     </div>
 
-    <!-- Optional: Include Bootstrap JS for enhanced functionality -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- JavaScript for Smooth Scrolling -->
+    <script>
+        document.querySelectorAll('a.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <button id="scroll-to-top-btn" title="Go to top">Top</button>
+    <script>
+         // Function to toggle dark mode
+         function toggleDarkMode() {
+           const body = document.body;
+           body.classList.toggle('dark-mode');
+         }
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            const scrollToTopBtn = document.getElementById("scroll-to-top-btn");
+
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+
+            // Update scroll-to-top button text color based on the current theme
+            const body = document.body;
+            const isDarkMode = body.classList.contains('dark-mode');
+            const textColor = isDarkMode ? '#000' : '#fff';
+            scrollToTopBtn.style.color = textColor;
+        }
+    
+        // When the user clicks on the button, scroll to the top of the document
+        document.getElementById("scroll-to-top-btn").onclick = function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        };
+    </script>
+    
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sun');
+        const moonIcon = document.getElementById('moon');
+        const autoIcon = document.getElementById('auto');
+
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                document.body.classList.remove('theme-light', 'theme-auto');
+                document.body.classList.add('theme-dark');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'inline-block';
+                autoIcon.style.display = 'none';
+                // Change text color to black
+                updateTextColor('#000');
+            } else {
+                document.body.classList.remove('theme-dark', 'theme-auto');
+                document.body.classList.add('theme-light');
+                sunIcon.style.display = 'inline-block';
+                moonIcon.style.display = 'none';
+                autoIcon.style.display = 'none';
+                // Change text color to white
+                updateTextColor('#fff');
+            }
+        });
+
+        function updateTextColor(color) {
+            // Update text color for specific elements
+            const headerText = document.querySelector('.header');
+            const buttonText = document.querySelectorAll('.btn, .nav-link, .btn.btn-primary, .button--loading, .button__text');
+            const cardText = document.querySelectorAll('.content-card h2, .content-card p, .content-card h3');
+            const footerText = document.querySelector('.footer p');
+            const urlInput = document.getElementById('urlInput');
+            const contentInput = document.getElementById('content');
+
+            urlInput.style.backgroundColor = color;
+            urlInput.style.color = color === '#333' ? '#ddd' : '#333';
+            urlInput.placeholder = color === '#333' ? 'Enter URL for AutoScraper' : 'Enter URL for AutoScraper';
+
+            contentInput.style.backgroundColor = color;
+            contentInput.style.color = color === '#333' ? '#ddd' : '#333';
+            contentInput.placeholder = color === '#333' ? 'Enter text to summarize' : 'Enter text to summarize';
+
+            headerText.style.color = color;
+
+            buttonText.forEach(button => {
+                button.style.color = color;
+            });
+
+            cardText.forEach(text => {
+                text.style.color = color;
+            });
+
+            footerText.style.color = color;
+        }
+    </script>
+
 </body>
 </html>
+
