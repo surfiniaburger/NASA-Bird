@@ -1,154 +1,52 @@
-# AutoScraper: A Smart, Automatic, Fast and Lightweight Web Scraper for Python
 
-![img](https://user-images.githubusercontent.com/17881612/91968083-5ee92080-ed29-11ea-82ec-d99ec85367a5.png)
+![Alt text](perse.png)
+## Inspiration
+The inspiration behind "Perse" stems from a desire to enhance the educational experience using innovative technologies. The goal is to leverage the power of Artificial Intelligence (AI) to address challenges within the education sector. Recognizing the transformative impact of large language models (LLMs) and AI, the aim is to create a tool that supports teachers and students, focusing on aspects like curriculum planning, question selection, teacher training, content generation, personalized feedback, and automated grading.
 
-This project is made for automatic web scraping to make scraping easy. 
-It gets a url or the html content of a web page and a list of sample data which we want to scrape from that page. **This data can be text, url or any html tag value of that page.** It learns the scraping rules and returns the similar elements. Then you can use this learned object with new urls to get similar content or the exact same element of those new pages.
+## What it does
+"Perse" is a Flask web application that integrates educational AI, space photos, and fun facts, all powered by Redis for efficient data storage and retrieval. The application offers a dynamic and engaging user experience, featuring educational AI content tailored to user interests. Users can explore space-related photos, discover fun facts, and even receive personalized feedback based on their interactions with the platform.
 
-![Alt text](templates/Perse.png)
+Key Features:
 
+Educational AI Module: Delivers insightful content on topics related to Mars rovers, exploration missions, and technological advancements in space exploration.
+Space Photos: Showcases random space-related photos, providing users with visually captivating content.
+Fun Facts: Presents interesting and educational fun facts about space, Mars rovers, and related topics.
+AutoScraper Integration: Allows users to extract information from provided URLs, enhancing their ability to explore and learn from external sources.
+Real-time Updates: Provides real-time updates through a WebSocket connection, fostering an interactive and dynamic user experience.
+## How we built it
+"Perse" is built using the Flask web framework, a powerful and lightweight tool for developing web applications in Python. The integration of Redis enhances data caching and retrieval efficiency. The application leverages the AutoScraper library for web scraping, enabling dynamic content extraction from external URLs.
 
+Key Technologies Used:
 
+Flask
+Redis
+AutoScraper
+WebSocket for real-time updates
+SendGrid for email communication
+Transformers library for text summarization
+Flask-Login for user authentication
+Challenges we ran into
+Building "Perse" posed various challenges, including:
 
-## Installation
+Integration Complexity: Integrating multiple modules, such as educational AI, space photos, and AutoScraper, required meticulous coordination.
+Real-time Updates: Implementing real-time updates through WebSocket posed challenges in ensuring seamless communication between the server and clients.
+User Authentication: Developing a secure and user-friendly authentication system with Flask-Login presented complexities.
+Accomplishments that we're proud of
+Despite the challenges, "Perse" has achieved several accomplishments:
 
-It's compatible with python 3.
+Robust Functionality: The application seamlessly combines diverse features, providing users with a comprehensive educational experience.
+Real-time Interaction: Successfully implementing real-time updates enhances user engagement and keeps them informed instantly.
+User Authentication: Establishing a secure user authentication system ensures personalized feedback and a tailored experience.
+## What we learned
+The development of "Perse" has been a learning journey:
 
-- Install latest version from git repository using pip:
-```bash
-$ pip install git+https://github.com/alirezamika/autoscraper.git
-```
+Integration Skills: Gained expertise in integrating AI modules, web scraping tools, and real-time communication features.
+User-Centric Design: Learned to prioritize user experience by incorporating personalized feedback and interactive elements.
+## What's next for Perse
+The future roadmap for "Perse" includes:
 
-- Install from PyPI:
-```bash
-$ pip install autoscraper
-```
-
-- Install from source:
-```bash
-$ python setup.py install
-```
-
-## How to use
-
-### Getting similar results
-
-Say we want to fetch all related post titles in a stackoverflow page:
-
-```python
-from autoscraper import AutoScraper
-
-url = 'https://stackoverflow.com/questions/2081586/web-scraping-with-python'
-
-# We can add one or multiple candidates here.
-# You can also put urls here to retrieve urls.
-wanted_list = ["What are metaclasses in Python?"]
-
-scraper = AutoScraper()
-result = scraper.build(url, wanted_list)
-print(result)
-```
-
-Here's the output:
-```python
-[
-    'How do I merge two dictionaries in a single expression in Python (taking union of dictionaries)?', 
-    'How to call an external command?', 
-    'What are metaclasses in Python?', 
-    'Does Python have a ternary conditional operator?', 
-    'How do you remove duplicates from a list whilst preserving order?', 
-    'Convert bytes to a string', 
-    'How to get line count of a large file cheaply in Python?', 
-    "Does Python have a string 'contains' substring method?", 
-    'Why is “1000000000000000 in range(1000000000000001)” so fast in Python 3?'
-]
-```
-Now you can use the `scraper` object to get related topics of any stackoverflow page:
-```python
-scraper.get_result_similar('https://stackoverflow.com/questions/606191/convert-bytes-to-a-string')
-```
-
-### Getting exact result
-
-Say we want to scrape live stock prices from yahoo finance:
-
-```python
-from autoscraper import AutoScraper
-
-url = 'https://finance.yahoo.com/quote/AAPL/'
-
-wanted_list = ["124.81"]
-
-scraper = AutoScraper()
-
-# Here we can also pass html content via the html parameter instead of the url (html=html_content)
-result = scraper.build(url, wanted_list)
-print(result)
-```
-Note that you should update the `wanted_list` if you want to copy this code, as the content of the page dynamically changes.
-
-You can also pass any custom `requests` module parameter. for example you may want to use proxies or custom headers:
-
-```python
-proxies = {
-    "http": 'http://127.0.0.1:8001',
-    "https": 'https://127.0.0.1:8001',
-}
-
-result = scraper.build(url, wanted_list, request_args=dict(proxies=proxies))
-```
-
-Now we can get the price of any symbol:
-
-```python
-scraper.get_result_exact('https://finance.yahoo.com/quote/MSFT/')
-```
-
-**You may want to get other info as well.** For example if you want to get market cap too, you can just append it to the wanted list. By using the `get_result_exact` method, it will retrieve the data as the same exact order in the wanted list.
-
-**Another example:** Say we want to scrape the about text, number of stars and the link to issues of Github repo pages:
-
-```python
-from autoscraper import AutoScraper
-
-url = 'https://github.com/alirezamika/autoscraper'
-
-wanted_list = ['A Smart, Automatic, Fast and Lightweight Web Scraper for Python', '2.5k', 'https://github.com/alirezamika/autoscraper/issues']
-
-scraper = AutoScraper()
-scraper.build(url, wanted_list)
-```
-
-Simple, right?
-
-
-### Saving the model
-
-We can now save the built model to use it later. To save:
-
-```python
-# Give it a file path
-scraper.save('yahoo-finance')
-```
-
-And to load:
-
-```python
-scraper.load('yahoo-finance')
-```
-
-## Tutorials
-
-- See [this gist](https://gist.github.com/alirezamika/72083221891eecd991bbc0a2a2467673) for more advanced usages.
-- [AutoScraper and Flask: Create an API From Any Website in Less Than 5 Minutes](https://medium.com/better-programming/autoscraper-and-flask-create-an-api-from-any-website-in-less-than-5-minutes-3f0f176fc4a3)
-
-## Issues
-Feel free to open an issue if you have any problem using the module.
-
-
-## Support the project
-
-<a href="https://www.buymeacoffee.com/alirezam" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-black.png" alt="Buy Me A Coffee" height="45" width="163" ></a>
-
-
-#### Happy Coding  ♥️
+Enhanced User Profiles: Implementing user profiles to track individual progress and preferences.
+Expanded Educational AI Content: Enriching the educational AI module with more diverse and in-depth topics.
+Collaborative Features: Introducing collaborative elements, such as discussion forums or shared learning spaces.
+Gamification: Incorporating gamified elements to incentivize and reward user engagement.
+"Perse" aims to continually evolve, providing an ever-improving educational platform for users interested in space exploration and AI in education.
