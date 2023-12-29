@@ -18,25 +18,25 @@ Real-time Updates: Provides real-time updates through a WebSocket connection, fo
 
 Key Technologies Used:
 
-Flask
-Redis
-AutoScraper
-WebSocket for real-time updates
-SendGrid for email communication
-Transformers library for text summarization
-Flask-Login for user authentication
-Challenges we ran into
+-Flask
+-Redis
+-AutoScraper
+-WebSocket for real-time updates
+-SendGrid for email communication
+-Transformers library for text -summarization
+
+## Challenges we ran into
 Building "Perse" posed various challenges, including:
 
 Integration Complexity: Integrating multiple modules, such as educational AI, space photos, and AutoScraper, required meticulous coordination.
 Real-time Updates: Implementing real-time updates through WebSocket posed challenges in ensuring seamless communication between the server and clients.
-User Authentication: Developing a secure and user-friendly authentication system with Flask-Login presented complexities.
+
 Accomplishments that we're proud of
 Despite the challenges, "Perse" has achieved several accomplishments:
 
 Robust Functionality: The application seamlessly combines diverse features, providing users with a comprehensive educational experience.
 Real-time Interaction: Successfully implementing real-time updates enhances user engagement and keeps them informed instantly.
-User Authentication: Establishing a secure user authentication system ensures personalized feedback and a tailored experience.
+
 ## What we learned
 The development of "Perse" has been a learning journey:
 
@@ -50,3 +50,13 @@ Expanded Educational AI Content: Enriching the educational AI module with more d
 Collaborative Features: Introducing collaborative elements, such as discussion forums or shared learning spaces.
 Gamification: Incorporating gamified elements to incentivize and reward user engagement.
 "Perse" aims to continually evolve, providing an ever-improving educational platform for users interested in space exploration and AI in education.
+
+## Power up the app
+simply point your terminal to the pipfile by running `pipenv install && pipenv run python setup.py`
+
+
+
+Next you start the redis server in another terminal `redis-server`
+Then you run `pipenv run python app.py`
+
+Enjoy!
