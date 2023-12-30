@@ -9,21 +9,26 @@ The inspiration behind "Perse" stems from a desire to enhance the educational ex
 Key Features:
 
 Educational AI Module: Delivers insightful content on topics related to Mars rovers, exploration missions, and technological advancements in space exploration.
+
 Space Photos: Showcases random space-related photos, providing users with visually captivating content.
+
 Fun Facts: Presents interesting and educational fun facts about space, Mars rovers, and related topics.
+
 AutoScraper Integration: Allows users to extract information from provided URLs, enhancing their ability to explore and learn from external sources.
+
 Real-time Updates: Provides real-time updates through a WebSocket connection, fostering an interactive and dynamic user experience.
+
 ## How we built it
 "Perse" is built using the Flask web framework, a powerful and lightweight tool for developing web applications in Python. The integration of Redis enhances data caching and retrieval efficiency. The application leverages the AutoScraper library for web scraping, enabling dynamic content extraction from external URLs.
 
-Key Technologies Used:
+## Key Technologies Used:
 
--Flask
--Redis
--AutoScraper
--WebSocket for real-time updates
--SendGrid for email communication
--Transformers library for text -summarization
+# Flask
+# Redis
+# AutoScraper
+# WebSocket for real-time updates
+# SendGrid for email communication
+# Transformers library for text -summarization
 
 ## Challenges we ran into
 Building "Perse" posed various challenges, including:
@@ -35,20 +40,27 @@ Accomplishments that we're proud of
 Despite the challenges, "Perse" has achieved several accomplishments:
 
 Robust Functionality: The application seamlessly combines diverse features, providing users with a comprehensive educational experience.
+
 Real-time Interaction: Successfully implementing real-time updates enhances user engagement and keeps them informed instantly.
 
 ## What we learned
 The development of "Perse" has been a learning journey:
 
 Integration Skills: Gained expertise in integrating AI modules, web scraping tools, and real-time communication features.
+
 User-Centric Design: Learned to prioritize user experience by incorporating personalized feedback and interactive elements.
+
 ## What's next for Perse
 The future roadmap for "Perse" includes:
 
 Enhanced User Profiles: Implementing user profiles to track individual progress and preferences.
+
 Expanded Educational AI Content: Enriching the educational AI module with more diverse and in-depth topics.
+
 Collaborative Features: Introducing collaborative elements, such as discussion forums or shared learning spaces.
+
 Gamification: Incorporating gamified elements to incentivize and reward user engagement.
+
 "Perse" aims to continually evolve, providing an ever-improving educational platform for users interested in space exploration and AI in education.
 
 ## Power up the app
@@ -62,6 +74,6 @@ Then you run `pipenv run python app.py`
 Make sure to use WSL to run the redis-server if you're a windows user. It's much easier that way.
 
 ## In addition
-Run the test file 'pipenv run pytest'
+Run the test file `pipenv run pytest`
 
-Enjoy!
+Enjoy! 🚀
