@@ -14,6 +14,7 @@ import redis
 import random
 import requests
 
+
 app = Flask(__name__)
 CORS(app)
 redis_client = FlaskRedis(app)
@@ -34,7 +35,7 @@ def summarize_text(text):
     return summary[0]['summary_text']
 
 @app.route('/summarize', methods=['POST', 'GET'])
-def summarize_content():
+async def summarize_content():
     if request.method == 'POST':
         content = request.form.get('content')
         summarized_content = summarize_text(content)
@@ -78,7 +79,7 @@ def scrape_url(url):
     return None
 
 @app.route('/')
-def landing_page():
+async def landing_page():
     # Check if educational AI data is in cache
     ai_data = redis_client.get('educational_ai_data')
 
@@ -216,7 +217,7 @@ def send_email():
                     <strong>{ai_data}</strong><br>
                     <img src="{space_photo_url}" alt="Space Photo"><br>
                     <em class="fun-fact">Fun Fact:</em> {fun_fact}<br>
-                    <a href="https://forms.gle/RfyVJ6bezGd5NPTV8" class="feedback-link">Provide Feedback</a>
+                    <a href="https://your-feedback-form-link" class="feedback-link">Provide Feedback</a>
                 </div>
             </body>
         </html>

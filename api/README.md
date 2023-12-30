@@ -52,11 +52,13 @@ Gamification: Incorporating gamified elements to incentivize and reward user eng
 "Perse" aims to continually evolve, providing an ever-improving educational platform for users interested in space exploration and AI in education.
 
 ## Power up the app
-simply point your terminal to the pipfile by running `pipenv install && pipenv run python setup.py`
-
+simply point your terminal to the pipfile by running `pipenv install && pipenv run python setup.py install`
+Or you could run both commands separetly.
 
 
 Next you start the redis server in another terminal `redis-server`
 Then you run `pipenv run python app.py`
+
+Make sure to use WSL to run the redis-server if you're a windows user. It's much easier that way.
 
 Enjoy!
