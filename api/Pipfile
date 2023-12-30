@@ -15,6 +15,9 @@ flask-cors = "*"
 passlib = "*"
 beautifulsoup4 = "*"
 flask = {version = "*", extras = ["async"]}
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+pytest = "*"
 
 [dev-packages]
 

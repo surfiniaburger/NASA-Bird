@@ -61,4 +61,7 @@ Then you run `pipenv run python app.py`
 
 Make sure to use WSL to run the redis-server if you're a windows user. It's much easier that way.
 
+## In addition
+Run the test file 'pipenv run pytest'
+
 Enjoy!

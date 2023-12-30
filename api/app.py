@@ -20,6 +20,12 @@ redis_client = FlaskRedis(app)
 load_dotenv()
 app.config['SECRET_KEY'] = 'secret_key'
 
+if app.config['TESTING']:
+    # Load testing configuration
+    app.config.from_object('config.TestConfig')
+else:
+    # Load main configuration
+    app.config.from_object('config.Config')
 
 # Initialize Redis connection
 redis_host = os.environ.get('REDIS_HOST', 'localhost')
